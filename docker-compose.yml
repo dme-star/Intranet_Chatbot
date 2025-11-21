@@ -1,18 +1,29 @@
 services:
   api:
+    # Service to run the main Chatbot API
     build: ./api
     ports:
+      # Expose port 8000 externally (for Codespaces forwarding)
       - "8000:8000"
     volumes:
+      # Mount the API source code and persistent data directory
       - ./api:/app
       - ./data:/data
     environment:
+      # Environment variable for the data path
       - INTRANET_DATA_DIR=/data
+    
+    # Crucial Fix: Run the Uvicorn server and bind it to 0.0.0.0 (all interfaces)
+    # This ensures the API is accessible via the Codespaces public URL.
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
 
   ingest:
+    # Service for data ingestion/indexing (runs when needed)
     build: ./ingest
     volumes:
+      # Mount the ingest source code and persistent data directory
       - ./ingest:/app
       - ./data:/data
     environment:
+      # Environment variable for the data path
       - INTRANET_DATA_DIR=/data
