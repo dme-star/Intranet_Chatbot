@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+sentence-transformers
+numpy
+scipy
+pydantic
+python-multipart
+aiofiles
+watchdog

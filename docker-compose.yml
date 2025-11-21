@@ -1,0 +1,16 @@
+services:
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app
+      - ./data:/data
+    environment:
+      - INTRANET_DATA_DIR=/data
+  ingest:
+    build: ./ingest
+    volumes:
+      - ./ingest:/app
+      - ./data:/data
+    command: ["python", "ingest_worker.py"]
