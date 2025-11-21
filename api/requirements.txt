@@ -1,9 +1,17 @@
 fastapi
 uvicorn[standard]
-sentence-transformers
-numpy
-scipy
 pydantic
-python-multipart
-aiofiles
-watchdog
+python-dotenv
+
+sentence-transformers
+transformers
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.2.2
+
+faiss-cpu
+pandas
+numpy
+
+requests
+tqdm
