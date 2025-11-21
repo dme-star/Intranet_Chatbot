@@ -8,9 +8,11 @@ services:
       - ./data:/data
     environment:
       - INTRANET_DATA_DIR=/data
+
   ingest:
     build: ./ingest
     volumes:
       - ./ingest:/app
       - ./data:/data
-    command: ["python", "ingest_worker.py"]
+    environment:
+      - INTRANET_DATA_DIR=/data
